@@ -7,7 +7,7 @@ Built as a frontend internship assignment with a strong focus on React, API inte
 ## Links
 
 - **Live Demo:** Add Vercel URL after deployment
-- **GitHub Repository:** Add repository URL after publishing
+- **GitHub Repository:** [Souravdeb0/MyTravaly-Hotel-Intelligence](https://github.com/Souravdeb0/MyTravaly-Hotel-Intelligence)
 
 ## Dashboard Preview
 
@@ -139,8 +139,8 @@ This approach keeps remote and interface state clearly separated without introdu
 ### Installation
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/Souravdeb0/MyTravaly-Hotel-Intelligence.git
+cd MyTravaly-Hotel-Intelligence
 npm install
 ```
 
