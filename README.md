@@ -6,7 +6,7 @@ Built as a frontend internship assignment with a strong focus on React, API inte
 
 ## Links
 
-- **Live Demo:** Add Vercel URL after deployment
+- **Live Demo:** [mytravaly-hotel-intelligence.vercel.app](https://mytravaly-hotel-intelligence.vercel.app)
 - **GitHub Repository:** [Souravdeb0/MyTravaly-Hotel-Intelligence](https://github.com/Souravdeb0/MyTravaly-Hotel-Intelligence)
 
 ## Dashboard Preview
