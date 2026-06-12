@@ -1,4 +1,10 @@
-import { useDeferredValue, useEffect, useState } from 'react'
+import {
+  lazy,
+  Suspense,
+  useDeferredValue,
+  useEffect,
+  useState,
+} from 'react'
 import { useQueries, useQueryClient } from '@tanstack/react-query'
 import {
   ArrowUpRight,
@@ -12,7 +18,6 @@ import './App.css'
 import { Brand } from './components/Brand'
 import { BookingFilters } from './components/BookingFilters'
 import { BookingsView } from './components/BookingsView'
-import { BookingsChart, RevenueChart } from './components/Charts'
 import { DashboardSkeleton } from './components/LoadingState'
 import { MetricCard } from './components/MetricCard'
 import { PerformanceRings } from './components/PerformanceRings'
@@ -24,6 +29,20 @@ import type { BookingFilters as BookingFiltersType } from './types'
 const dayOptions = [7, 30, 90, 180, 365]
 const monthOptions = [3, 6, 9, 12]
 const bookingsPerPage = 6
+const RevenueChart = lazy(() =>
+  import('./components/Charts').then((module) => ({
+    default: module.RevenueChart,
+  })),
+)
+const BookingsChart = lazy(() =>
+  import('./components/Charts').then((module) => ({
+    default: module.BookingsChart,
+  })),
+)
+
+function ChartFallback() {
+  return <div className="chart-placeholder" aria-label="Loading chart" />
+}
 
 function App() {
   const queryClient = useQueryClient()
@@ -188,7 +207,11 @@ function App() {
                 </select>
               </label>
             </div>
-            <div className="chart-area"><RevenueChart data={trends} /></div>
+            <div className="chart-area">
+              <Suspense fallback={<ChartFallback />}>
+                <RevenueChart data={trends} />
+              </Suspense>
+            </div>
           </article>
 
           <article className="panel panel--bookings">
@@ -196,7 +219,11 @@ function App() {
               <div><p className="eyebrow">Demand</p><h2>Bookings by month</h2></div>
               <ArrowUpRight size={20} aria-hidden="true" />
             </div>
-            <div className="chart-area chart-area--small"><BookingsChart data={trends} /></div>
+            <div className="chart-area chart-area--small">
+              <Suspense fallback={<ChartFallback />}>
+                <BookingsChart data={trends} />
+              </Suspense>
+            </div>
           </article>
 
           <article className="panel panel--performance">
